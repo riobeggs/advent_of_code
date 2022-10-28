@@ -2,7 +2,6 @@ import os
 
 
 class SonarSweeper:
-
     def get_input(self):
         """
         Reads text file and converts inputs to a list of inputs.
@@ -23,7 +22,7 @@ class SonarSweeper:
         previous_measurement = 0
 
         for measurement in self.input:
-            
+
             if self.input.index(measurement) > 0:
                 measurement = int(measurement)
 
@@ -43,10 +42,14 @@ class SonarSweeper:
 
 
 def main():
+
+    """Part 1"""
     ss = SonarSweeper()
     ss.get_input()
     ss.find_measurement_increases()
     ss.results()
+
+    """Part 2"""
 
 
 if __name__ == "__main__":
