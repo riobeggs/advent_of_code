@@ -1,18 +1,47 @@
+from util.input import get_input
+
+
 class Dive:
+    def __init__(self):
+        self._input = get_input("day2")
+        self._horizontal_position = 0
+        self._vertical_position = 0
+        self._coverage = None
 
-    def get_input(self):
+    def find_positions(self):
         """
-        Reads text file and converts inputs to a list of inputs.
+        Finds the horizonal position after all forward moves in self._input.
         """
+        for move in self._input:
 
-        input_ = open("advent_of_code_2021/inputs/day2.txt", "r")
-        input_ = input_.read().strip().split("\n")
-        self.input = input_
+            if "forward" in move:
+                amount = move.split(" ")
+                self._horizontal_position += int(amount[1])
+
+            elif "up" in move:
+                amount = move.split(" ")
+                self._vertical_position -= int(amount[1])
+
+            elif "down" in move:
+                amount = move.split(" ")
+                self._vertical_position += int(amount[1])
+
+    def find_coverage(self):
+        """
+        Total coverage by multiplying the final vertical and horizontal positions.
+        """
+        self._coverage = self._horizontal_position * self._vertical_position
+
+    def run(self):
+        self.find_positions()
+        self.find_coverage()
+        print(self._coverage)
 
 
 def main():
+    """Part 1"""
     dive = Dive()
-    dive.get_input()
+    dive.run()
 
 
 if __name__ == "__main__":
